@@ -12,10 +12,10 @@ class ViewTickerAction extends TickerAction
      */
     protected function action(): Response
     {
-        $tickerId = (int) $this->resolveArg('id');
-        $ticker = $this->ticker->find($tickerId);
+        $tickerName = $this->resolveArg('name');
+        $ticker = $this->ticker->where('name', $tickerName)->get();
 
-        $this->logger->info("Ticker of id `${tickerId}` was viewed.");
+        $this->logger->info("Ticker of name `${tickerName}` was viewed.");
 
         return $this->respondWithData($ticker);
     }

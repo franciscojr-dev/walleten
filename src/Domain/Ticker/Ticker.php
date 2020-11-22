@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Ticker extends Eloquent
 {
     protected $table = 'ticker';
-    protected $fillable = ['ticker','type','close'];
-    protected $primaryKey = 'id';
-    protected $dates = ['created_at', 'updated_at'];
+    protected $fillable = [
+        'name',
+        'description',
+        'type',
+        'open',
+        'high',
+        'close',
+        'low',
+        'change',
+        'change_abs',
+    ];
 }

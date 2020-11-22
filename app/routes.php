@@ -11,6 +11,6 @@ use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 return function (App $app) {
     $app->group('/tickers', function (Group $group) {
         $group->get('', ListTickersAction::class);
-        $group->get('/{id}', ViewTickerAction::class);
+        $group->get('/{name}', ViewTickerAction::class);
     });
 };
