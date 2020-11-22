@@ -1,12 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infrastructure\Persistence\Routines;
+namespace App\Infrastructure\Persistence\Routines\B3;
 
 use GuzzleHttp\Client;
 use App\Domain\Ticker\Ticker;
-
-require __DIR__ . '/bootstrap.php';
 
 $columns = [
     'name',
@@ -43,7 +41,6 @@ $response = $client->request(
 );
 
 $data = $response->getBody()->getContents();
-
 if (!empty($data)) {
     $data = json_decode($data, true);
 
