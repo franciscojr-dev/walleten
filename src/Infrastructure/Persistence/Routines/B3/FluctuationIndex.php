@@ -10,10 +10,13 @@ use GuzzleHttp\Client;
 
 $client = new Client();
 
-$list_index = Index::all()->toArray();
+$list_index = [
+    'IBOV',
+    'IFIX'
+];
 
 foreach ($list_index as $index) {
-    $response = $client->request('GET', 'http://cotacao.b3.com.br/mds/api/v1/DailyFluctuationHistory/'.$index['name']);
+    $response = $client->request('GET', 'http://cotacao.b3.com.br/mds/api/v1/DailyFluctuationHistory/'.$index);
     
     $data = $response->getBody()->getContents();
     if (!empty($data)) {
@@ -27,14 +30,15 @@ foreach ($list_index as $index) {
             $history_price[] = $v['closPric'];
         });
 
-        $index = array_merge($index, [
+        $index = [
+            'name' => $index,
             'open' => $history[0]['closPric'],
             'high' => max($history_price),
             'close' => $last_history['closPric'],
             'low' => min($history_price),
             'change' => round($last_history['prcFlcn'], 2),
             'change_abs' => bcsub((string) $last_history['closPric'], (string) $history[0]['closPric'], 2),
-        ]);
+        ];
         unset($history);
         unset($history_price);
     }
