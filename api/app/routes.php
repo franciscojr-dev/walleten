@@ -8,6 +8,7 @@ use App\Application\Actions\Ticker\ViewTickerAction;
 use App\Application\Actions\User\ViewUserAction;
 use App\Application\Actions\Wallet\ViewWalletAction;
 use App\Application\Actions\WalletTicker\ViewWalletTickerAction;
+use App\Application\Middleware\UpdateWalletTickerMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -29,7 +30,7 @@ return function (App $app) {
     });
     
     $app->group('/wallet', function (Group $group) {
-        $group->get('/{id}', ViewWalletAction::class);
+        $group->get('/{id}', ViewWalletAction::class)->add(UpdateWalletTickerMiddleware::class);
         $group->get('/tickers/{id}', ViewWalletTickerAction::class);
     });
 };
