@@ -7,10 +7,10 @@ function stats(props) {
     return (
         <>
             <div className="ticker-stats">
-                <DivInfo label="Quantidade" value={props.amount} noColor></DivInfo>
-                <DivInfo label="Preço Médio" value={props.avg} format="money" noColor></DivInfo>
-                <DivInfo label="Montante Final" value={props.amount * props.current} format="money" noColor></DivInfo>
-                <DivInfo label="Rentabilidade" value={(Utils.getPercentage(props.current, props.avg))} format="percent"></DivInfo>
+                <DivInfo label="Quantidade" value={props.position.amount} noColor></DivInfo>
+                <DivInfo label="Preço Médio" value={props.position.avg} format="money" noColor></DivInfo>
+                <DivInfo label="Montante Final" value={props.position.amount * props.close} format="money" noColor></DivInfo>
+                <DivInfo label="Rentabilidade" value={(Utils.getPercentage(props.close, props.position.avg))} format="percent"></DivInfo>
             </div>
         </>
     )
