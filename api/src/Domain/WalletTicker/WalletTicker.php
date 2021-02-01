@@ -15,4 +15,16 @@ class WalletTicker extends Eloquent
         'avg',
     ];
     protected $hidden = ['wallet_id'];
+
+    public function ticker()
+    {
+        return $this->belongsToMany(
+            'App\Domain\Ticker\Ticker',
+            'App\Domain\WalletTicker\WalletTicker', 
+            'id', 
+            'ticker_id'
+        )
+        ->as('position')
+        ->withPivot('amount', 'avg');
+    }
 }

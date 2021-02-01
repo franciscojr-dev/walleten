@@ -12,6 +12,7 @@ class Wallet extends Eloquent
         'description',
         'primary',
         'user_id',
+        'total_avg',
         'total_balance',
         'total_stock',
         'total_fund',

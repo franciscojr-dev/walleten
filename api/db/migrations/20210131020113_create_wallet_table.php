@@ -35,6 +35,7 @@ class CreateWalletTable extends AbstractMigration
         $wallet->addColumn('description', 'string', ['limit' => 100])
               ->addColumn('primary', 'enum', ['values' => ['y', 'n']])
               ->addColumn('user_id', 'integer')
+              ->addColumn('total_avg', 'string', ['limit' => 50, 'default' => '0.00'])
               ->addColumn('total_balance', 'string', ['limit' => 50, 'default' => '0.00'])
               ->addColumn('total_stock', 'string', ['limit' => 50, 'default' => '0.00'])
               ->addColumn('total_fund', 'string', ['limit' => 50, 'default' => '0.00'])

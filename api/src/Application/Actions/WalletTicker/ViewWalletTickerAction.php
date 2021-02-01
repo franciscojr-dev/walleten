@@ -17,6 +17,13 @@ class ViewWalletTickerAction extends WalletTickerAction
 
         $this->logger->info("Wallet of id `${walletId}` was viewed.");
 
-        return $this->respondWithData($walletTicker);
+        $tickers = [];
+        foreach ($walletTicker as $tmp) {
+            foreach ($tmp->ticker as $ticker) {
+                $tickers[] = $ticker;
+            }
+        }
+
+        return $this->respondWithData($tickers);
     }
 }
