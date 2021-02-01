@@ -16,28 +16,21 @@ $list_index = [
 ];
 
 foreach ($list_index as $index) {
-    $response = $client->request('GET', 'http://cotacao.b3.com.br/mds/api/v1/DailyFluctuationHistory/'.$index);
+    $response = $client->request('GET', 'http://cotacao.b3.com.br/mds/api/v1/instrumentQuotation/'.$index);
     
     $data = $response->getBody()->getContents();
     if (!empty($data)) {
         $data = json_decode($data, true);
-
-        $history = $data['TradgFlr']['scty']['lstQtn'];
-        $last_history = end($history);
+        $info = $data['Trad'][0]['scty']['SctyQtn'];
         
-        $history_price = [];
-        array_walk($history, function($v, $k) use (&$history_price) {
-            $history_price[] = $v['closPric'];
-        });
-
         $index = [
             'name' => $index,
-            'open' => $history[0]['closPric'],
-            'high' => max($history_price),
-            'close' => $last_history['closPric'],
-            'low' => min($history_price),
-            'change' => round($last_history['prcFlcn'], 2),
-            'change_abs' => bcsub((string) $last_history['closPric'], (string) $history[0]['closPric'], 2),
+            'open' => $info['opngPric'],
+            'high' => $info['maxPric'],
+            'close' => $info['curPrc'],
+            'low' => $info['minPric'],
+            'change' => round($info['prcFlcn'], 2),
+            'change_abs' => bcsub((string) $info['curPrc'], (string) $info['opngPric'], 2),
         ];
         unset($history);
         unset($history_price);
