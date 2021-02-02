@@ -13,7 +13,7 @@ function App() {
                 const walletResponse = data.data;
                 for(const wallet in walletResponse) {
                     if (walletResponse[wallet].primary === 'y') {
-                        setWallets({loadWallet: true, ...walletResponse[wallet]});
+                        setWallets({load: true, ...walletResponse[wallet]});
                     }
                 }
             }

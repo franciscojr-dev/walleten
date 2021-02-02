@@ -18,7 +18,7 @@ function Stats(props) {
                     IndexTmp[indexResponse[index].name] = `${indexResponse[index].close} (${indexResponse[index].change})`;
                 }
 
-                setIndexs({loadIndex: true, ...IndexTmp});
+                setIndexs({load: true, ...IndexTmp});
             }
         });
     }, []);
@@ -27,8 +27,8 @@ function Stats(props) {
         <>
             <div className="wallet">
                 <Data>
-                    {!props.loadWallet && <Loading></Loading>}
-                    {props.loadWallet &&
+                    {!props.load && <Loading></Loading>}
+                    {props.load &&
                         <>
                             <DivInfo label="Saldo total" value={`${props.total_balance}`} format="money" noColor></DivInfo>
                             <DivInfo label="Saldo em ações" value={`${props.total_stock}`} format="money" noColor></DivInfo>
@@ -43,8 +43,8 @@ function Stats(props) {
 
             <div className="indexes">
                 <Data>
-                    {!indexs.loadIndex && <Loading></Loading>}
-                    {indexs.loadIndex && 
+                    {!indexs.load && <Loading></Loading>}
+                    {indexs.load && 
                         <>
                             <DivInfo label="Indice IBOV" value={`${indexs.IBOV}`} format="index" noColor></DivInfo>
                             <DivInfo label="Indice IFIX" value={`${indexs.IFIX}`} format="index" noColor></DivInfo>
