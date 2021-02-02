@@ -45,9 +45,10 @@ class UpdateWalletTickerMiddleware implements Middleware
                     $wallt_status[$type] = bcadd($wallt_status[$type], $total_close, 2);
                 }
 
-                $change_abs = bcmul($tmp->amount, $tick->change_abs, 2);
-                $wallt_status['variation'] = bcadd($wallt_status['variation'], $tick->change, 2);
+                $change_abs = bcmul($tmp->amount, $tick->change_abs, 4);
                 $wallt_status['variation_money'] = bcadd($wallt_status['variation_money'], $change_abs, 2);
+                $wallt_status['variation'] = bcdiv($wallt_status['variation_money'], $wallt_status['total_balance'], 6);
+                $wallt_status['variation'] = bcmul($wallt_status['variation'], '100', 2);
             }
         }
 
