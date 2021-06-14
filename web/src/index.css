@@ -1,0 +1,9 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+	font:14px "Open Sans", sans-serif; 
+	text-align:center;
+	background: #ecf1f5;
+}

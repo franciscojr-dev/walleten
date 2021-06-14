@@ -1,0 +1,50 @@
+.grid {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+.stats {
+    grid-area: stats;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.wallet {
+    min-width: 814px;
+}
+.indexes {
+    min-width: 814px;
+}
+.tickers {
+    width: 1640px;
+    grid-area: tickers;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.grid-template {
+    grid-template-areas:
+    "stats stats stats stats"
+    "tickers tickers tickers tickers"
+    ;
+}
+.wallet-stats {
+    background: #fff;
+    border: 1px solid #ecf1f5;
+    border-radius: 5px;
+    box-shadow: 0px 2px 3px -1px rgb(151 171 187 / 70%);
+    padding: 15px 20px;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
+    justify-content: center;
+    color: #adb8c2;
+    font-size: 1em;
+}
+.wallet-stats > div {
+    border-bottom: 1px solid #ebeff2;
+    padding: 5px 0;
+}
+.wallet-stats > div:nth-child(1n+2) {
+    border-left: 1px solid #ebeff2;
+}
