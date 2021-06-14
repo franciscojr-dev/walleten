@@ -1,5 +1,5 @@
 .ticker {
-    width: 400px;
+    max-width: 400px;
     background: #fff;
     border: 1px solid #ecf1f5;
     border-radius: 5px;
